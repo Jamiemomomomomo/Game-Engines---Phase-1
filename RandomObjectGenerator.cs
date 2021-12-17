@@ -16,27 +16,37 @@ public class RandomObjectGenerator : MonoBehaviour
     {
         while (true)
         {
-            float randomTime = Random.Range(0, 2f);
+            float randomTime = Random.Range(0, 5f);
             yield return new WaitForSeconds(randomTime);
-            row = 0;
+            row = Random.Range(0,3);
 
-            gameBoard.SetValueAt(column, row);
-
-            while(row <= 4)
-            {
+            do
+            {             
+                gameBoard.SetValueAt(column, row);
                 yield return new WaitForSeconds(speed);
                 gameBoard.SetValueAt(column, row, false);
                 row++;
 
-                gameBoard.SetValueAt(column, row);
 
             }
 
-            gameController.ObjectReachBottom(column);
+            while (row <= 4);
 
+            if (gameController.ObjectReachBottom(column))
+            {
+                break;
+            }
+            else
+            {   
+                if (row != 5)
+                gameBoard.SetValueAt(column, row, false);
+
+                speed -= 0.25f;
+                if (speed < 0.25f)
+                {
+                    speed = 0.25f;
+                }
+            }
         }
-
-
     }
-
 }

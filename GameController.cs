@@ -8,8 +8,9 @@ public class GameController : MonoBehaviour
 
     public GameBoard gameBoard;
 
-    public void ObjectReachBottom(int column)
+    public bool ObjectReachBottom(int column)
     {
+        return false;
     }
 
     public void MovePlayerLeft()
