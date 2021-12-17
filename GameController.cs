@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -8,6 +7,10 @@ public class GameController : MonoBehaviour
     int hammerRow = 0;
 
     public GameBoard gameBoard;
+
+    public void ObjectReachBottom(int column)
+    {
+    }
 
     public void MovePlayerLeft()
     {
@@ -39,27 +42,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         gameBoard.SetValueAt(HandymanColumn, 5, true);
-
-        gameBoard.SetValueAt(0, hammerRow, true);
-
-
-        StartCoroutine(UpdateHammer());
     }
-
-    IEnumerator UpdateHammer()
-    {
-        while(true)
-        {
-            yield return new WaitForSeconds(1f);
-
-            gameBoard.SetValueAt(0, hammerRow, false);
-            hammerRow++;
-            if (hammerRow > 5)
-            {
-                hammerRow = 0;
-            }
-
-            gameBoard.SetValueAt(0, hammerRow, true);
-        }
-    }
+    
+    
 }
